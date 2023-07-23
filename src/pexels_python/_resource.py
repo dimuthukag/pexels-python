@@ -1,8 +1,26 @@
+import re
+import requests
 from pexels_python._user import Photographer
 
 class Actions:
-    # Implement this class in future
-    pass
+    def __init__(self, url:str) -> None:
+        self.__url = url
+
+    def save(self,file:str=None):
+        """
+            Save the resource locally
+        """
+        if not file:
+            file = re.findall(r'/\d+/([0-9a-z\-]+\.[a-z]+)',self.__url)[0]
+        with open(file,'wb') as resource_file:
+            resource_file.write(requests.get(self.url).content)
+
+    @property
+    def url(self)->str:
+        """
+            Returns the resource url
+        """
+        return self.__url
 
 class Photo_Files:
     def __init__(self,photo_files_src:dict) -> None:
@@ -10,7 +28,6 @@ class Photo_Files:
     
     @property
     def orginal(self)->Actions:
-        """"""
         try:
             return Actions(self.__photo_files_src['orginal'])
         except KeyError:
