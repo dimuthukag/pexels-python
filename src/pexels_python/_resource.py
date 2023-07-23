@@ -1,8 +1,69 @@
 from pexels_python._user import Photographer
 
-class Photo_Files:
+class Actions:
     # Implement this class in future
     pass
+
+class Photo_Files:
+    def __init__(self,photo_files_src:dict) -> None:
+        self.__photo_files_src = photo_files_src
+    
+    @property
+    def orginal(self)->Actions:
+        """"""
+        try:
+            return Actions(self.__photo_files_src['orginal'])
+        except KeyError:
+            raise Exception("KeyError: The 'orginal' field not available.")
+    
+    @property
+    def extra_large(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['large2x'])
+        except KeyError:
+            raise Exception("KeyError: The 'large2x' field not available.")
+
+    @property
+    def large(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['large'])
+        except KeyError:
+            raise Exception("KeyError: The 'large' field not available.")
+    
+    @property
+    def medium(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['medium'])
+        except KeyError:
+            raise Exception("KeyError: The 'medium' field not available.")
+
+    @property
+    def small(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['small'])
+        except KeyError:
+            raise Exception("KeyError: The 'small' field not available.")
+
+    @property
+    def portrait(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['portrait'])
+        except KeyError:
+            raise Exception("KeyError: The 'portrait' field not available.")
+    
+    @property
+    def landscape(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['landscape'])
+        except KeyError:
+            raise Exception("KeyError: The 'landscape' field not available.")
+
+    @property
+    def tiny(self)->Actions:
+        try:
+            return Actions(self.__photo_files_src['tiny'])
+        except KeyError:
+            raise Exception("KeyError: The 'tiny' field not available.")
 
 class Photo:
     """
